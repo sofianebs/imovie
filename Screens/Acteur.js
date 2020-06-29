@@ -58,7 +58,7 @@ export default class acteur extends Component {
                         </TouchableOpacity>
                     </Left>
                          <Body>
-                     <Title></Title>
+                     <Title><Acteur/Title>
                     </Body>
                     <Right />
                 </Header>
