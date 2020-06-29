@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {ActivityIndicator, ScrollView, StyleSheet, View, TouchableOpacity, Image, Text,FlatList} from 'react-native';
-import {GetActor,getImageFromApi,getMovieDetail} from "../API/TMDB";
+import {getActor,getImageFromApi,getMovieDetail} from "../API/TMDB";
 import {Body, Container, Content, Header, Title, Left, Right, Badge} from "native-base";
 import { FontAwesome } from '@expo/vector-icons';
 import moment from 'moment';
@@ -28,7 +28,7 @@ export default class Acteur extends Component {
 
         this.setState({ isLoading: true});
 
-        GetActor(id).then(data => {
+        getActor(id).then(data => {
             this.setState({
                 acteur: data,
                 isLoading: false
@@ -41,21 +41,10 @@ export default class Acteur extends Component {
     };
     
     render () {
-       
+        const { acteur } = this.state;
       
-       if (this.state == undefined ){
-        GetActor(id).then(data => {
-            this.setState({
-                acteur: data,
-                isLoading: false
-            });
-            const{ acteur} = this.state.acteur;
-        }).catch(error => {
-            console.log(error)
-        });
-       }
         return(
-            <Container>e
+            <Container>
                 <Header>
                     <Left>
                         <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
@@ -72,7 +61,7 @@ export default class Acteur extends Component {
                             <View>
                                 <View style={{alignItems: 'center'}}>
                                  <Text >
-                                 {(acteur.id)} 
+                                 {(id)} 
                                  </Text>
 
 

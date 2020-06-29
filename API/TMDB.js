@@ -25,12 +25,16 @@ export function getMovieDetail (id) {
         .then((response) => response.json())
         .catch((error) => console.error(error))
 }
-export function GetActor (id) {
+export async function getActor (id) {
     const url = API_URL + '/person/' + id + '?api_key=' + API_TOKEN + '&append_to_response=videos,images,credits,similar&language=fr&include_image_language=en,null';
     console.log(url);
-    return fetch(url)
-        .then((response) => response.json())
-        .catch((error) => console.error(error))
+    try {
+        const response = await fetch(url);
+        return await response.json();
+    }
+    catch (error) {
+        return console.error(error);
+    }
 }
 export function getImageFromApi (name, size = 'original') {
     return API_URL_IMAGE + ( (size != 'original') ? '/w' + size : '/original' ) +  name;
